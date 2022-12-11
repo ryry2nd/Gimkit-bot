@@ -1,10 +1,8 @@
 package gimkitBot;
 
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
 
 public class Classic extends BasicFunctions{
     private ChromeDriver driver;
@@ -22,16 +20,18 @@ public class Classic extends BasicFunctions{
         startBot();
     }
 
-    private void startBot() {
+    private void startBot() throws InterruptedException {
         while (true) {
-            try {
-                if (!driver.findElements(By.xpath("//span[@class='notranslate lang-en']")).isEmpty()) {
-                    multipleChoice();
-                }
-                else if (!driver.findElements(By.xpath("//div[@name='Continue']")).isEmpty()) {
-                    learn();
-                }
-            } catch (NoSuchElementException e) {}
+            if (!driver.findElements(By.xpath("//div[@style='height: 100%; width: 100%; display: flex; justify-content: center; align-items: center; padding: 7px 6%; box-sizing: border-box; font-weight: 900; font-size: 25px;']")).isEmpty()) {
+                multipleChoice();
+                Thread.sleep(1000);
+            }
+            else if (!driver.findElements(By.xpath("//div[@style='height: 100%; width: 100%; display: flex; justify-content: center; align-items: center; padding: 15px 6%; box-sizing: border-box; font-weight: 900; font-size: 40px;']")).isEmpty()) {
+                learn();
+            }
+            else if (!driver.findElements(By.xpath("//style=[@display: block; white-space: nowrap;']")).isEmpty()) {
+                driver.findElement(By.xpath("//")).sendKeys(Keys.ENTER);
+            }
         }
     }
     public void stop() {

@@ -47,16 +47,14 @@ public class BasicFunctions {
         nBox.sendKeys(name);
         nBox.sendKeys(Keys.ENTER);
         
-        Thread.sleep(1000);
+        Thread.sleep(2000);
     }
 
     public String findAns(String question) {
         String possibleAns;
-        for (int i = 0; i < words.size(); i++) {
-            possibleAns = words.get(i);
-            if (possibleAns.equals(question)) {
-                return possibleAns;
-            }
+        for (String key : words.keySet()) {
+            possibleAns = words.get(key);
+            if (possibleAns.equals(question)) {return possibleAns;}
         }
         return null;
     }
@@ -77,6 +75,8 @@ public class BasicFunctions {
                     pAns.click();
                 }
             }
+
+            driver.findElement(By.xpath("//div[@class='sc-kOnlKp dIDLaR']")).click();
         }
     }
 
