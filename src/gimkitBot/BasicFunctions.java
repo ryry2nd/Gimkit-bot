@@ -79,4 +79,6 @@ public class BasicFunctions {
             }
         }
     }
+
+    public void learn() {}
 }

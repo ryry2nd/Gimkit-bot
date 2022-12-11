@@ -16,14 +16,20 @@ public class Classic extends BasicFunctions{
 
     public void start() throws InterruptedException {
         super.log_in();
+
+        if (!driver.findElements(By.xpath("//span[@class='anticon anticon-close-circle']")).isEmpty()) {return;}
+
         startBot();
     }
 
     private void startBot() {
         while (true) {
             try {
-                if (driver.findElement(By.xpath("//span[@class='notranslate lang-en']")) != null) {
+                if (!driver.findElements(By.xpath("//span[@class='notranslate lang-en']")).isEmpty()) {
                     multipleChoice();
+                }
+                else if (!driver.findElements(By.xpath("//div[@name='Continue']")).isEmpty()) {
+                    learn();
                 }
             } catch (NoSuchElementException e) {}
         }

@@ -14,9 +14,8 @@ public class App {
         String name = props.getProperty("name");
 
         Classic gBot = new Classic(id, name);
+        
         gBot.start();
-
-        Thread.sleep(10000);
         gBot.stop();
     }
 }
